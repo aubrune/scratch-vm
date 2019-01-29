@@ -12,9 +12,13 @@ class Scratch3RosaBlocks {
         return 'en';
     }
 
+    static get EXTENSION_ID () {
+        return 'rosa';
+    }
+
     constructor (runtime) {
         this.runtime = runtime;
-        this.runtime.registerPeripheralExtension('rosa', this);
+        this.runtime.registerPeripheralExtension(Scratch3RosaBlocks.EXTENSION_ID, this);
 
         this._connected = false;
 
@@ -64,7 +68,7 @@ class Scratch3RosaBlocks {
         const messages = this.getMessagesForLocale();
 
         return {
-            id: 'rosa',
+            id: Scratch3RosaBlocks.EXTENSION_ID,
             name: 'Rosa',
             showStatusButton: true,
             blocks: [
