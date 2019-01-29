@@ -8,6 +8,7 @@ const createRosaClient = () => {
     const defaultHost = 'rosa.local';
     const defaultPort = 1234;
     const sendMaxRate = 60;
+    const keepAliveTimeout = 5000;
 
     const url = `ws://${defaultHost}:${defaultPort}`;
     const ws = new WebSocket(url);
@@ -38,6 +39,7 @@ const createRosaClient = () => {
             cmd = {};
         }
     };
+
     // TODO: should we instead altern sending/receiving
     // so the robot can schedule the communication.
     const sendId = setInterval(sender, 1000 / sendMaxRate);
@@ -87,12 +89,21 @@ const createRosaClient = () => {
         }
     };
 
+    let alive = false;
+    const keepAlive = () => {
+        log.warn('Keep alive timeout!');
+
+        if (alive) {
+            alive = false;
+            if (typeof client.ondisconnect === typeof Function) {
+                client.ondisconnect();
+            }
+        }
+    };
+    let keepAliveId = setTimeout(keepAlive, keepAliveTimeout);
+
     ws.onopen = () => {
         log.info(`Connected!`);
-
-        if (typeof client.onconnect === typeof Function) {
-            client.onconnect();
-        }
 
         const defaultPinConfiguration = {
             AIN1: 18,
@@ -108,12 +119,23 @@ const createRosaClient = () => {
 
     ws.onmessage = msg => {
         _.merge(state, JSON.parse(msg.data));
+
+        if (!alive) {
+            alive = true;
+            if (typeof client.onconnect === typeof Function) {
+                client.onconnect();
+            }
+        }
+
+        clearTimeout(keepAliveId);
+        keepAliveId = setTimeout(keepAlive, keepAliveTimeout);
     };
 
     ws.onclose = () => {
         log.info('Ws connection closed.');
 
         clearInterval(sendId);
+        clearInterval(keepAliveId);
 
         if (typeof client.ondisconnect === typeof Function) {
             client.ondisconnect();
