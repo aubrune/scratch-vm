@@ -5,7 +5,7 @@ module.exports = {
         distanceSensor: 'front [DIST_SENSOR] distance',
         colorSensor: 'front [COLOR_SENSOR] color',
         blackLineCenter: 'line center x',
-        buzz: 'buzz'
+        buzz: 'buzz [T]s'
     },
     menus: {
         wheelSide: {

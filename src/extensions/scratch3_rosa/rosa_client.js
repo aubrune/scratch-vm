@@ -76,8 +76,10 @@ const createRosaClient = () => {
 
             return color;
         },
-        buzz: () => {
-            log.info('Buzzzzzzz');
+        buzz: duration => {
+            log.info(`Buz for ${duration}s`);
+
+            updateCommand({buzz: duration});
         },
         getBlackLineCenter: () => {
             log.info(`Get black line center.`);

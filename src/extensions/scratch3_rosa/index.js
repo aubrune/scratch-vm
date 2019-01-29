@@ -56,8 +56,8 @@ class Scratch3RosaBlocks {
         return this.rosa.getColor(args.COLOR_SENSOR);
     }
 
-    buzz () {
-        this.rosa.buzz();
+    buzz (args) {
+        this.rosa.buzz(Cast.toNumber(args.T));
     }
 
     blackLineCenter () {
@@ -127,7 +127,13 @@ class Scratch3RosaBlocks {
                 {
                     opcode: 'buzz',
                     blockType: BlockType.COMMAND,
-                    text: messages.blocks.buzz
+                    text: messages.blocks.buzz,
+                    arguments: {
+                        T: {
+                            type: ArgumentType.NUMBER,
+                            defaultValue: 1
+                        }
+                    }
                 },
                 {
                     opcode: 'blackLineCenter',
