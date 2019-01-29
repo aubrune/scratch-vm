@@ -108,7 +108,7 @@ class Scratch3RosaBlocks {
                         DIST_SENSOR: {
                             type: ArgumentType.STRING,
                             menu: 'distanceSensor',
-                            defaultValue: 'center'
+                            defaultValue: 'front-center'
                         }
                     }
                 },
@@ -120,7 +120,7 @@ class Scratch3RosaBlocks {
                         COLOR_SENSOR: {
                             type: ArgumentType.STRING,
                             menu: 'colorSensor',
-                            defaultValue: 'center'
+                            defaultValue: 'front-center'
                         }
                     }
                 },
@@ -142,14 +142,14 @@ class Scratch3RosaBlocks {
                     {text: messages.menus.wheelSide.all, value: 'all'}
                 ],
                 distanceSensor: [
-                    {text: messages.menus.distanceSensor.center, value: 'center'},
-                    {text: messages.menus.distanceSensor.left, value: 'left'},
-                    {text: messages.menus.distanceSensor.right, value: 'right'}
+                    {text: messages.menus.distanceSensor.center, value: 'front-center'},
+                    {text: messages.menus.distanceSensor.left, value: 'front-left'},
+                    {text: messages.menus.distanceSensor.right, value: 'front-right'}
                 ],
                 colorSensor: [
-                    {text: messages.menus.colorSensor.center, value: 'center'},
-                    {text: messages.menus.colorSensor.left, value: 'left'},
-                    {text: messages.menus.colorSensor.right, value: 'right'}
+                    {text: messages.menus.colorSensor.center, value: 'front-center'},
+                    {text: messages.menus.colorSensor.left, value: 'front-left'},
+                    {text: messages.menus.colorSensor.right, value: 'front-right'}
                 ],
                 groundSensor: [
                     {text: messages.menus.groundSensor.frontLeft, value: 'front-left'},
