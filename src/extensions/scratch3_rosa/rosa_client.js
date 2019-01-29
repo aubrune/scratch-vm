@@ -7,10 +7,12 @@ const _ = require('lodash');
 const createRosaClient = () => {
     const defaultHost = 'rosa.local';
     const defaultPort = 1234;
-    const sendMaxRate = 50;
+    const sendMaxRate = 60;
 
     const url = `ws://${defaultHost}:${defaultPort}`;
     const ws = new WebSocket(url);
+
+    const state = {};
 
     const send = data => {
         if (ws.readyState !== WebSocket.OPEN) {
@@ -45,8 +47,9 @@ const createRosaClient = () => {
             updateCommand({wheels: {a: 0, b: 0}});
         },
         getDistance: sensor => {
-            log.info(`Get ${sensor} distance.`);
-            return 42.0;
+            const dist = state.distance[sensor];
+            log.info(`${sensor} dist: ${dist}`);
+            return dist;
         },
         setSpeed: (wheel, speed) => {
             speed = MathUtil.clamp(speed, -1, 1);
@@ -63,12 +66,15 @@ const createRosaClient = () => {
             }
         },
         isGround: sensor => {
-            log.info(`Is ${sensor} ground?`);
-            return true;
+            const dist = state.ground[sensor];
+            log.info(`${sensor} ground dist: ${dist}`);
+            return dist > 0.5;
         },
         getColor: sensor => {
-            log.info(`Get ${sensor} color`);
-            return 'lol';
+            const color = state.color[sensor];
+            log.info(`Get ${sensor} color: ${color}`);
+
+            return color;
         },
         buzz: () => {
             log.info('Buzzzzzzz');
@@ -98,8 +104,8 @@ const createRosaClient = () => {
         send({setup: defaultPinConfiguration});
     };
 
-    ws.onmessage = data => {
-        log.info(`Got ${data}`);
+    ws.onmessage = msg => {
+        _.merge(state, JSON.parse(msg.data));
     };
 
     ws.onclose = () => {
