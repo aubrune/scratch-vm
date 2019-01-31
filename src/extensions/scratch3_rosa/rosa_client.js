@@ -43,6 +43,7 @@ const createRosaClient = () => {
     // TODO: should we instead altern sending/receiving
     // so the robot can schedule the communication.
     const sendId = setInterval(sender, 1000 / sendMaxRate);
+    let camActivated = false;
 
     const client = {
         stopAll: () => {
@@ -84,6 +85,10 @@ const createRosaClient = () => {
             updateCommand({buzz: duration});
         },
         getBlackLineCenter: () => {
+            if (!camActivated) {
+                send({camera: true});
+                camActivated = true;
+            }
             const center = state['line-center'];
             log.info(`Get black line center ${center}.`);
 
