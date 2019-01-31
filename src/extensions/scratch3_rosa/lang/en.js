@@ -4,6 +4,7 @@ module.exports = {
         groundSensor: '[GROUND_SENSOR] ground',
         distanceSensor: 'front [DIST_SENSOR] distance',
         colorSensor: 'front [COLOR_SENSOR] color',
+        lineDetected: 'line detected?',
         blackLineCenter: 'line center x',
         buzz: 'buzz [T]s'
     },

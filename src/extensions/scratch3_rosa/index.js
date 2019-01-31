@@ -60,6 +60,14 @@ class Scratch3RosaBlocks {
         this.rosa.buzz(Cast.toNumber(args.T));
     }
 
+    lineDetected () {
+        const center = this.rosa.getBlackLineCenter();
+        if (center) {
+            return true;
+        }
+        return false;
+    }
+
     blackLineCenter () {
         const center = this.rosa.getBlackLineCenter();
         if (center) {
@@ -137,6 +145,11 @@ class Scratch3RosaBlocks {
                             defaultValue: 1
                         }
                     }
+                },
+                {
+                    opcode: 'lineDetected',
+                    blockType: BlockType.BOOLEAN,
+                    text: messages.blocks.lineDetected
                 },
                 {
                     opcode: 'blackLineCenter',
