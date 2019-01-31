@@ -104,17 +104,6 @@ const createRosaClient = () => {
 
     ws.onopen = () => {
         log.info(`Connected!`);
-
-        const defaultPinConfiguration = {
-            AIN1: 18,
-            AIN2: 17,
-            PWMA: 4,
-            BIN1: 24,
-            BIN2: 27,
-            PWMB: 22,
-            STBY: 23
-        };
-        send({setup: defaultPinConfiguration});
     };
 
     ws.onmessage = msg => {
