@@ -84,8 +84,12 @@ const createRosaClient = () => {
             updateCommand({buzz: duration});
         },
         getBlackLineCenter: () => {
-            log.info(`Get black line center.`);
-            return -0.25;
+            const center = state['line-center'];
+            log.info(`Get black line center ${center}.`);
+
+            if (center) {
+                return {x: center[0], y: center[1]};
+            }
         }
     };
 

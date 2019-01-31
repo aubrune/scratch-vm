@@ -61,7 +61,10 @@ class Scratch3RosaBlocks {
     }
 
     blackLineCenter () {
-        return this.rosa.getBlackLineCenter();
+        const center = this.rosa.getBlackLineCenter();
+        if (center) {
+            return center.x;
+        }
     }
 
     getInfo () {
