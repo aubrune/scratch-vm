@@ -3,10 +3,12 @@ module.exports = {
         wheelSpeed: 'vitesse de la roue [WHEEL] à [SPEED]',
         groundSensor: 'capteur sol [GROUND_SENSOR]',
         distanceSensor: 'distance avant [DIST_SENSOR]',
-        colorSensor: 'couleur avant [COLOR_SENSOR]',
+        colorSensor: 'couleur',
         lineDetected: 'line detectée ?',
         blackLineCenter: 'centre de la ligne x',
-        buzz: 'buzz [T]s'
+        buzz: 'buzz [T]s',
+        ledOn: 'allumer la led [LED]',
+        ledOff: 'éteindre la led [LED]'
     },
     menus: {
         wheelSide: {
@@ -19,8 +21,7 @@ module.exports = {
             left: 'gauche',
             right: 'droite'
         },
-        colorSensor: {
-            center: 'centre',
+        led: {
             left: 'gauche',
             right: 'droite'
         },

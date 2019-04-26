@@ -50,7 +50,7 @@ const createRosaClient = () => {
             updateCommand({wheels: {a: 0, b: 0}});
         },
         getDistance: sensor => {
-            const dist = state.distance[sensor];
+            const dist = 255 - state.distance[sensor];
             log.info(`${sensor} dist: ${dist}`);
             return dist;
         },
@@ -69,12 +69,12 @@ const createRosaClient = () => {
             }
         },
         isGround: sensor => {
-            const dist = state.ground[sensor];
+            const dist = state.distance[sensor];
             log.info(`${sensor} ground dist: ${dist}`);
-            return dist > 0.5;
+            return dist > 10;
         },
         getColor: sensor => {
-            const color = state.color[sensor];
+            const color = state.color['front-center'];
             log.info(`Get ${sensor} color: ${color}`);
 
             return color;
@@ -83,6 +83,11 @@ const createRosaClient = () => {
             log.info(`Buz for ${duration}s`);
 
             updateCommand({buzz: duration});
+        },
+        led: (led, on) => {
+            log.info(`Turn led ${led} ${on}`);
+
+            updateCommand({leds: {[led]: on}});
         },
         getBlackLineCenter: () => {
             if (!camActivated) {

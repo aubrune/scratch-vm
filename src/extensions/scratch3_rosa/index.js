@@ -52,12 +52,20 @@ class Scratch3RosaBlocks {
         return this.rosa.getDistance(args.DIST_SENSOR);
     }
 
-    colorSensor (args) {
-        return this.rosa.getColor(args.COLOR_SENSOR);
+    colorSensor () {
+        return this.rosa.getColor();
     }
 
     buzz (args) {
         this.rosa.buzz(Cast.toNumber(args.T));
+    }
+
+    ledOn (args) {
+        this.rosa.led(args.LED, true);
+    }
+
+    ledOff (args) {
+        this.rosa.led(args.LED, false);
     }
 
     lineDetected () {
@@ -107,7 +115,7 @@ class Scratch3RosaBlocks {
                         GROUND_SENSOR: {
                             type: ArgumentType.STRING,
                             menu: 'groundSensor',
-                            defaultValue: 'front-left'
+                            defaultValue: 'ground-front-left'
                         }
                     }
                 },
@@ -127,11 +135,28 @@ class Scratch3RosaBlocks {
                     opcode: 'colorSensor',
                     blockType: BlockType.REPORTER,
                     text: messages.blocks.colorSensor,
+                },
+                {
+                    opcode: 'ledOn',
+                    blockType: BlockType.COMMAND,
+                    text: messages.blocks.ledOn,
                     arguments: {
-                        COLOR_SENSOR: {
+                        LED: {
                             type: ArgumentType.STRING,
-                            menu: 'colorSensor',
-                            defaultValue: 'front-center'
+                            menu: 'led',
+                            defaultValue: 'left'
+                        }
+                    }
+                },
+                {
+                    opcode: 'ledOff',
+                    blockType: BlockType.COMMAND,
+                    text: messages.blocks.ledOff,
+                    arguments: {
+                        LED: {
+                            type: ArgumentType.STRING,
+                            menu: 'led',
+                            defaultValue: 'left'
                         }
                     }
                 },
@@ -168,16 +193,15 @@ class Scratch3RosaBlocks {
                     {text: messages.menus.distanceSensor.left, value: 'front-left'},
                     {text: messages.menus.distanceSensor.right, value: 'front-right'}
                 ],
-                colorSensor: [
-                    {text: messages.menus.colorSensor.center, value: 'front-center'},
-                    {text: messages.menus.colorSensor.left, value: 'front-left'},
-                    {text: messages.menus.colorSensor.right, value: 'front-right'}
+                led: [
+                    {text: messages.menus.led.left, value: 'left'},
+                    {text: messages.menus.led.right, value: 'right'}
                 ],
                 groundSensor: [
-                    {text: messages.menus.groundSensor.frontLeft, value: 'front-left'},
-                    {text: messages.menus.groundSensor.frontRight, value: 'front-right'},
-                    {text: messages.menus.groundSensor.rearLeft, value: 'rear-left'},
-                    {text: messages.menus.groundSensor.rearRight, value: 'rear-right'}
+                    {text: messages.menus.groundSensor.frontLeft, value: 'ground-front-left'},
+                    {text: messages.menus.groundSensor.frontRight, value: 'ground-front-right'},
+                    {text: messages.menus.groundSensor.rearLeft, value: 'ground-rear-left'},
+                    {text: messages.menus.groundSensor.rearRight, value: 'ground-rear-right'}
                 ]
             }
         };
