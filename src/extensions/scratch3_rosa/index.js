@@ -144,7 +144,7 @@ class Scratch3RosaBlocks {
                         LED: {
                             type: ArgumentType.STRING,
                             menu: 'led',
-                            defaultValue: 'left'
+                            defaultValue: 'center'
                         }
                     }
                 },
@@ -156,7 +156,7 @@ class Scratch3RosaBlocks {
                         LED: {
                             type: ArgumentType.STRING,
                             menu: 'led',
-                            defaultValue: 'left'
+                            defaultValue: 'center'
                         }
                     }
                 },
@@ -195,6 +195,7 @@ class Scratch3RosaBlocks {
                 ],
                 led: [
                     {text: messages.menus.led.left, value: 'left'},
+                    {text: messages.menus.led.center, value: 'center'},
                     {text: messages.menus.led.right, value: 'right'}
                 ],
                 groundSensor: [

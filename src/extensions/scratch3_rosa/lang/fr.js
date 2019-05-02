@@ -23,6 +23,7 @@ module.exports = {
         },
         led: {
             left: 'gauche',
+            center: 'centre',
             right: 'droite'
         },
         groundSensor: {
