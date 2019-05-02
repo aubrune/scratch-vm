@@ -134,7 +134,7 @@ class Scratch3RosaBlocks {
                 {
                     opcode: 'colorSensor',
                     blockType: BlockType.REPORTER,
-                    text: messages.blocks.colorSensor,
+                    text: messages.blocks.colorSensor
                 },
                 {
                     opcode: 'ledOn',
