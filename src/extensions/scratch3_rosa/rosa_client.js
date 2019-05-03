@@ -71,7 +71,7 @@ const createRosaClient = () => {
         isGround: sensor => {
             const dist = state.distance[sensor];
             log.info(`${sensor} ground dist: ${dist}`);
-            return dist > 10;
+            return dist > 250;
         },
         getColor: sensor => {
             const color = state.color['front-center'];
