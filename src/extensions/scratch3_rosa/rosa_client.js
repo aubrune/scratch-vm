@@ -59,13 +59,13 @@ const createRosaClient = () => {
             log.info(`Set ${wheel} wheel speed to ${speed}`);
 
             if (wheel === 'left') {
-                updateCommand({wheels: {b: -speed}});
+                updateCommand({wheels: {a: -speed}});
 
             } else if (wheel === 'right') {
-                updateCommand({wheels: {a: speed}});
+                updateCommand({wheels: {b: speed}});
 
             } else if (wheel === 'all') {
-                updateCommand({wheels: {a: speed, b: -speed}});
+                updateCommand({wheels: {a: -speed, b: speed}});
             }
         },
         isGround: sensor => {

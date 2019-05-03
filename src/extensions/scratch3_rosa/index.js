@@ -103,7 +103,7 @@ class Scratch3RosaBlocks {
                         },
                         SPEED: {
                             type: ArgumentType.NUMBER,
-                            defaultValue: 0.25
+                            defaultValue: 0.15
                         }
                     }
                 },
